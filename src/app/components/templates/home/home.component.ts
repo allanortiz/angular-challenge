@@ -43,10 +43,6 @@ export class HomeComponent {
   ) {
     this.lastSearchedBookTitle = bookTitle;
 
-    console.log(bookTitle, pageSize, currentPage);
-
-    console.log({ bookTitle, pageSize, currentPage });
-
     this.onSearchBooks.emit({ title: bookTitle, pageSize, currentPage });
   }
 }

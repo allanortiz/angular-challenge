@@ -1,0 +1,18 @@
+<div
+  class="flex flex-row items-center border border-white border-opacity-50 bg-neutral-800"
+>
+  <app-input
+    class="w-full"
+    [placeholder]="placeholder"
+    (enter)="search()"
+    [(ngModel)]="value"
+    ngDefaultControl
+  ></app-input>
+
+  <div
+    class="flex justify-center px-8 py-8 text-white cursor-pointer"
+    (click)="search()"
+  >
+    <mat-icon class="scale-150">search</mat-icon>
+  </div>
+</div>

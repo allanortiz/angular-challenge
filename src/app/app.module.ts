@@ -29,6 +29,7 @@ import { SearchComponent } from './components/organisms/home/search/search.compo
 import { PaginatorComponent } from './components/atoms/paginator/paginator.component';
 import { BookService } from './services/book.service';
 import { SpinnerComponent } from './components/atoms/spinner/spinner.component';
+import { SearchInputComponent } from './components/molecules/search-input/search-input.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { SpinnerComponent } from './components/atoms/spinner/spinner.component';
     TableComponent,
     PaginatorComponent,
     SpinnerComponent,
+    SearchInputComponent,
   ],
   imports: [
     BrowserModule,

@@ -16,6 +16,7 @@ export class PaginatorComponent {
   @Input() pageSizeOptions: number[] = DEFAULT_PAGINATION.pageSizeOptions;
   @Input() pageSize: number = DEFAULT_PAGINATION.pageSize;
   @Input() totalRows: number = 0;
+  @Input() disabled: boolean = false;
 
   @Output() onPageChanged: EventEmitter<any> = new EventEmitter();
 

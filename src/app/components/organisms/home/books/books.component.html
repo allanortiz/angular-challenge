@@ -1,6 +1,6 @@
 <app-container class="flex flex-grow">
   <div
-    class="flex flex-col justify-between flex-grow w-full h-full bg-neutral-800 mat-elevation-z8"
+    class="flex flex-col justify-between flex-grow w-full h-full mb-4 bg-neutral-800 mat-elevation-z8"
   >
     <app-spinner *ngIf="loading" class="mt-12" [centered]="true"></app-spinner>
 
@@ -18,16 +18,17 @@
       [columnProps]="columnProps"
     >
     </app-table>
-
-    <app-paginator
-      *ngIf="books.length > 0 && !loading"
-      #paginator
-      class="py-2 bg-white"
-      [totalRows]="totalBooks"
-      [currentPage]="currentPage"
-      [pageSize]="pageSize"
-      [pageSizeOptions]="pageSizeOptions"
-      (onPageChanged)="pageChanged($event)"
-    ></app-paginator>
   </div>
+
+  <app-paginator
+    *ngIf="books.length > 0"
+    #paginator
+    class="bg-white"
+    [disabled]="loading"
+    [totalRows]="totalBooks"
+    [currentPage]="currentPage"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="pageSizeOptions"
+    (onPageChanged)="pageChanged($event)"
+  ></app-paginator>
 </app-container>
