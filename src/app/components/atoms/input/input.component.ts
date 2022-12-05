@@ -11,6 +11,6 @@ export class InputComponent {
 
   @Output() enter: EventEmitter<any> = new EventEmitter();
 
-  @Input() value: any;
-  @Output() valueChange: EventEmitter<any> = new EventEmitter();
+  @Input() ngModel: any;
+  @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
 }

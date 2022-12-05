@@ -30,8 +30,6 @@ export class BookComponent {
 
   getAuthor(key: string) {
     this.bookService.getAuthor(key).subscribe((response: any) => {
-      console.log(response);
-      console.log(response.bio);
       this.author = {
         key: response.key,
         name: response.name,
@@ -50,8 +48,6 @@ export class BookComponent {
 
     this.bookService.getBook(this.bookKey).subscribe(
       (response: any) => {
-        console.log(response);
-        console.log(response.subjects);
         const coverId = response.covers?.[0];
         const coverExists = coverId && coverId > 0;
 
@@ -64,7 +60,6 @@ export class BookComponent {
           subject_places: response.subjects?.join(', '),
           subject_times: response.subject_times?.join(', '),
           subjects: response.subjects?.join(', '),
-          // first_publish_year: row.first_publish_year,
         };
 
         this.getAuthor(response.authors?.[0]?.author?.key);

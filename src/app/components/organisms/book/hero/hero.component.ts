@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hero',
@@ -10,9 +9,5 @@ export class HeroComponent {
   @Input() book: any = {};
   @Input() author: any = {};
 
-  constructor(private router: Router) {}
-
-  goBack() {
-    this.router.navigate(['/']);
-  }
+  constructor() {}
 }

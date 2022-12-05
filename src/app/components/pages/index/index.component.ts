@@ -16,6 +16,8 @@ export class IndexComponent {
   currentBooksPage = 1;
   totalBooks = 0;
   booksNotFound = false;
+  inputValue: any;
+  state: any;
 
   constructor(
     private bookService: BookService,
@@ -23,11 +25,25 @@ export class IndexComponent {
   ) {}
 
   ngOnInit() {
-    this.searchBooks({
-      title: undefined,
-      currentPage: 1,
-      pageSize: DEFAULT_PAGINATION.pageSize,
-    });
+    this.state = this.bookService.bookListState$.getValue() || null;
+
+    console.log(this.state);
+
+    if (!this.state) {
+      this.searchBooks({
+        title: undefined,
+        currentPage: 1,
+        pageSize: DEFAULT_PAGINATION.pageSize,
+      });
+
+      return;
+    }
+
+    // this.title = this.state.title;
+    this.inputValue = this.state.title;
+    this.currentBooksPage = this.state.currentPage;
+    this.totalBooks = this.state.totalBooks;
+    this.books = this.state.books;
   }
 
   searchBooks({ title = DEFAULT_SEARCH, currentPage, pageSize }: any) {
@@ -47,6 +63,18 @@ export class IndexComponent {
               `https://covers.openlibrary.org/b/id/${book.cover_i}-S.jpg`,
           };
         });
+
+        this.state = {
+          title,
+          currentPage,
+          pageSize,
+          books: this.books,
+          totalBooks: response.numFound,
+        };
+
+        console.log(this.state);
+
+        this.bookService.bookListState$.next(this.state);
 
         this.totalBooks = response.numFound;
         this.booksNotFound = response.numFound === 0;

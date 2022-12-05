@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
 
 const DEFAULT_NAME_SEARCH = 'Harry Potter';
 
@@ -9,20 +10,14 @@ const DEFAULT_NAME_SEARCH = 'Harry Potter';
 export class BookService {
   constructor(private http: HttpClient) {}
 
+  bookListState$ = new BehaviorSubject<any>(null);
+
   getAuthor(key: string) {
     return this.http.get(`http://openlibrary.org${key}.json`);
   }
 
   getBook(key: string) {
-    // const headers = new HttpHeaders()
-    //   .set('content-type', 'application/json')
-    //   .set('Accept', 'application/json');
-    // .set('Access-Control-Allow-Origin', '*');
-
     return this.http.get(`http://openlibrary.org/${key}.json`);
-    // return this.http.get(`http://openlibrary.org/book/${key.split('/')?.[1]}`, {
-    //   headers,
-    // });
   }
 
   getBooks(

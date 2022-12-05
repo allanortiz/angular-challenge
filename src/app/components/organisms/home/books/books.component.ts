@@ -70,8 +70,6 @@ export class BooksComponent {
   }
 
   handleRowClick(row: any) {
-    console.log(row);
-
     this.router.navigateByUrl(`${row.key}`, { state: { row } });
   }
 }
