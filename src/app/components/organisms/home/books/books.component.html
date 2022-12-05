@@ -23,7 +23,7 @@
       *ngIf="books.length > 0 && !loading"
       #paginator
       class="py-2 bg-white"
-      [totalRows]="totalRows"
+      [totalRows]="totalBooks"
       [currentPage]="currentPage"
       [pageSize]="pageSize"
       [pageSizeOptions]="pageSizeOptions"

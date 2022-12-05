@@ -4,6 +4,7 @@ import { Book } from 'src/app/components/organisms/home/books/books.component';
 import { BookService } from 'src/app/services/book.service';
 import { SnackBarService } from 'src/app/services/snackbar.service';
 
+const DEFAULT_SEARCH = 'Technology';
 @Component({
   selector: 'index-page',
   templateUrl: './index.component.html',
@@ -12,6 +13,8 @@ import { SnackBarService } from 'src/app/services/snackbar.service';
 export class IndexComponent {
   books: Book[] = [];
   loadingBooks = false;
+  totalBooksFound = 0;
+  currentBooksPage = 1;
 
   constructor(
     private bookService: BookService,
@@ -26,7 +29,7 @@ export class IndexComponent {
     });
   }
 
-  searchBooks({ title = 'Technology', currentPage, pageSize }: any) {
+  searchBooks({ title = DEFAULT_SEARCH, currentPage, pageSize }: any) {
     this.loadingBooks = true;
 
     this.bookService.getBooks(title, currentPage, pageSize).subscribe(
@@ -44,6 +47,7 @@ export class IndexComponent {
           };
         });
 
+        this.totalBooksFound = response.numFound;
         this.loadingBooks = false;
       },
       (error: any) => {

@@ -3,7 +3,7 @@ import { PageEvent } from '@angular/material/paginator';
 
 export const DEFAULT_PAGINATION = {
   pageSizeOptions: [5, 10, 25, 100],
-  pageSize: 5,
+  pageSize: 10,
 };
 
 @Component({
@@ -18,4 +18,11 @@ export class PaginatorComponent {
   @Input() totalRows: number = 0;
 
   @Output() onPageChanged: EventEmitter<any> = new EventEmitter();
+
+  pageChanged(event: PageEvent) {
+    this.onPageChanged.emit({
+      pageSize: event.pageSize,
+      currentPage: event.pageIndex + 1, // pageIndex is zero-based and currentPage is one-based
+    });
+  }
 }

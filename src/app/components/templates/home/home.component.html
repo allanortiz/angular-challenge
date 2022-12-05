@@ -5,14 +5,12 @@
     <app-search (onSearch)="searchBooks($event)"></app-search>
 
     <app-books
+      class="flex flex-grow"
       [books]="books"
       [loading]="loadingBooks"
-      class="flex flex-grow"
+      [totalBooks]="totalBooksFound"
+      (onPageChanged)="booksPageChanged($event)"
     ></app-books>
-
-    <!-- <p *ngFor="let book of books">
-      {{ book }}
-    </p> -->
   </div>
 
   <app-footer></app-footer>

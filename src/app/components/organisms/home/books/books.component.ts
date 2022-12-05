@@ -1,4 +1,10 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  ViewChild,
+  EventEmitter,
+} from '@angular/core';
 import { ColumnProps } from 'src/app/components/atoms/table/table.component';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { DEFAULT_PAGINATION } from 'src/app/components/atoms/paginator/paginator.component';
@@ -27,6 +33,9 @@ const COLUMNS: ColumnProps = {
 export class BooksComponent {
   @Input() books: Book[] = [];
   @Input() loading = false;
+  @Input() totalBooks = 0;
+
+  @Output() onPageChanged: EventEmitter<any> = new EventEmitter();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -37,15 +46,18 @@ export class BooksComponent {
     'first_publish_year',
   ];
   columnProps: ColumnProps = COLUMNS;
-  currentPage = 0;
+  currentPage = 1;
   pageSizeOptions: number[] = DEFAULT_PAGINATION.pageSizeOptions;
   pageSize = DEFAULT_PAGINATION.pageSize;
   totalRows = 0;
 
-  pageChanged(event: PageEvent) {
-    console.log({ event });
+  pageChanged(event: any) {
     this.pageSize = event.pageSize;
-    this.currentPage = event.pageIndex;
-    // this.loadData();
+    this.currentPage = event.currentPage;
+
+    this.onPageChanged.emit({
+      pageSize: this.pageSize,
+      currentPage: this.currentPage,
+    });
   }
 }

@@ -1,8 +1,8 @@
 <mat-paginator
   [length]="totalRows"
-  [pageIndex]="currentPage"
+  [pageIndex]="currentPage - 1"
   [pageSize]="pageSize"
   [pageSizeOptions]="pageSizeOptions"
-  (page)="onPageChanged.emit($event)"
+  (page)="pageChanged($event)"
 >
 </mat-paginator>
