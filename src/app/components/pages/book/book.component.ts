@@ -31,6 +31,17 @@ export class BookComponent {
   getAuthor(key: string) {
     this.bookService.getAuthor(key).subscribe((response: any) => {
       console.log(response);
+      console.log(response.bio);
+      this.author = {
+        key: response.key,
+        name: response.name,
+        top_work: response.top_work,
+        birth_date: response.birth_date,
+        death_date: response.death_date,
+        bio: response.bio?.value || response.bio,
+        website: response.website,
+        wikipedia: response.wikipedia,
+      };
     });
   }
 
@@ -40,21 +51,20 @@ export class BookComponent {
     this.bookService.getBook(this.bookKey).subscribe(
       (response: any) => {
         console.log(response);
+        console.log(response.subjects);
         const coverId = response.covers?.[0];
         const coverExists = coverId && coverId > 0;
-        const row =
-          this.router.getCurrentNavigation()?.extras?.state?.['row'] || {};
 
         this.book = {
           title: response.title,
           cover:
             coverExists &&
             `https://covers.openlibrary.org/b/id/${coverId}-L.jpg`,
-          description: response.description?.value,
-          subject_places: response.subjects.join(', '),
-          subjects: response.subjects.join(', '),
-          author: row.author,
-          first_publish_year: row.first_publish_year,
+          description: response.description?.value ?? response.description,
+          subject_places: response.subjects?.join(', '),
+          subject_times: response.subject_times?.join(', '),
+          subjects: response.subjects?.join(', '),
+          // first_publish_year: row.first_publish_year,
         };
 
         this.getAuthor(response.authors?.[0]?.author?.key);

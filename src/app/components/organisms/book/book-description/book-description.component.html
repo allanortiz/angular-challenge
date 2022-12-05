@@ -35,17 +35,43 @@
           {{ book.subject_places || "No subject places found" }}
         </app-description>
 
+        <app-description class="block mb-8" label="Subject Times">
+          {{ book.subject_times || "No subject times found" }}
+        </app-description>
+
         <app-description class="block mb-8" label="Subjects">{{
-          book.subject || "No subjects found"
+          book.subjects || "No subjects found"
         }}</app-description>
 
-        <app-description class="block mb-8" label="Author">{{
-          book.author || "No author found"
-        }}</app-description>
+        <app-description class="block mb-8" label="Author">
+          <p class="mb-4">Name: {{ author.name }}</p>
 
-        <app-description class="block mb-8" label="First Publish Year">{{
-          book.first_publish_year || "No first publish year found"
-        }}</app-description>
+          <p *ngIf="author.top_work" class="mb-4">
+            Top work:{{ author.top_work }}
+          </p>
+
+          <p *ngIf="author.birth_date" class="mb-4">
+            Birth date: {{ author.birth_date }}
+          </p>
+
+          <p *ngIf="author.birth_date" class="mb-4">
+            Death date: {{ author.death_date }}
+          </p>
+
+          <p *ngIf="author.bio" class="mb-4">Bio: {{ author.bio }}</p>
+
+          <p *ngIf="author.website" class="mb-4">
+            Website:
+            <a [href]="author.website" target="_blank">{{ author.website }}</a>
+          </p>
+
+          <p *ngIf="author.wikipedia" class="mb-4">
+            Wikipedia:
+            <a [href]="author.wikipedia" target="_blank">{{
+              author.wikipedia
+            }}</a>
+          </p>
+        </app-description>
       </div>
     </div>
   </div>
