@@ -36,6 +36,8 @@ export class BooksComponent {
   @Input() loading = false;
   @Input() totalBooks = 0;
   @Input() booksNotFound = false;
+  @Input() currentPage = 1;
+  @Input() pageSize = DEFAULT_PAGINATION.pageSize;
 
   @Output() pageChanged: EventEmitter<any> = new EventEmitter();
 
@@ -48,9 +50,7 @@ export class BooksComponent {
     'first_publish_year',
   ];
   columnProps: ColumnProps = COLUMNS;
-  currentPage = 1;
   pageSizeOptions: number[] = DEFAULT_PAGINATION.pageSizeOptions;
-  pageSize = DEFAULT_PAGINATION.pageSize;
   totalRows = 0;
 
   constructor(private router: Router) {}

@@ -16,7 +16,6 @@ export class IndexComponent {
   currentBooksPage = 1;
   totalBooks = 0;
   booksNotFound = false;
-  inputValue: any;
   state: any;
 
   constructor(
@@ -27,26 +26,28 @@ export class IndexComponent {
   ngOnInit() {
     this.state = this.bookService.bookListState$.getValue() || null;
 
-    console.log(this.state);
-
     if (!this.state) {
-      this.searchBooks({
-        title: undefined,
-        currentPage: 1,
-        pageSize: DEFAULT_PAGINATION.pageSize,
-      });
+      this.searchBooks(
+        {
+          title: undefined,
+          currentPage: 1,
+          pageSize: DEFAULT_PAGINATION.pageSize,
+        },
+        true
+      );
 
       return;
     }
 
-    // this.title = this.state.title;
-    this.inputValue = this.state.title;
     this.currentBooksPage = this.state.currentPage;
     this.totalBooks = this.state.totalBooks;
     this.books = this.state.books;
   }
 
-  searchBooks({ title = DEFAULT_SEARCH, currentPage, pageSize }: any) {
+  searchBooks(
+    { title = DEFAULT_SEARCH, currentPage, pageSize }: any,
+    isInit: boolean = false
+  ) {
     this.loadingBooks = true;
 
     this.bookService.getBooks(title, currentPage, pageSize).subscribe(
@@ -65,14 +66,15 @@ export class IndexComponent {
         });
 
         this.state = {
-          title,
           currentPage,
           pageSize,
           books: this.books,
           totalBooks: response.numFound,
         };
 
-        console.log(this.state);
+        if (!isInit) {
+          this.state.title = title;
+        }
 
         this.bookService.bookListState$.next(this.state);
 

@@ -41,9 +41,14 @@ export class HomeComponent {
   ngAfterViewInit() {
     const state = this.bookService.bookListState$.getValue();
 
+    if (!state) return;
+
     if (state?.title) {
       this.searchComponent1.updateInputValue(state?.title);
     }
+
+    this.booksComponent.currentPage = state.currentPage;
+    this.booksComponent.pageSize = state.pageSize;
   }
 
   booksPageChanged({ pageSize, currentPage }: any) {
@@ -54,8 +59,12 @@ export class HomeComponent {
 
     this.lastPageSize = pageSize;
 
+    const state = this.bookService.bookListState$.getValue();
+
     if (this.lastSearchedBookTitle) {
       searchData.title = this.lastSearchedBookTitle;
+    } else if (state?.title) {
+      searchData.title = state.title;
     }
 
     this.searchBooks.emit(searchData);
