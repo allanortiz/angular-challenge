@@ -18,10 +18,10 @@ export class PaginatorComponent {
   @Input() totalRows: number = 0;
   @Input() disabled: boolean = false;
 
-  @Output() onPageChanged: EventEmitter<any> = new EventEmitter();
+  @Output() pageChanged: EventEmitter<any> = new EventEmitter();
 
-  pageChanged(event: PageEvent) {
-    this.onPageChanged.emit({
+  handlePageChanged(event: PageEvent) {
+    this.pageChanged.emit({
       pageSize: event.pageSize,
       currentPage: event.pageIndex + 1, // pageIndex is zero-based and currentPage is one-based
     });

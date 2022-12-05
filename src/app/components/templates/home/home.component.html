@@ -2,14 +2,15 @@
   <app-header></app-header>
 
   <div class="flex flex-col flex-grow">
-    <app-search (onSearch)="searchBooks($event)"></app-search>
+    <app-search (search)="handleSearchBooks($event)"></app-search>
 
     <app-books
       class="flex flex-grow"
       [books]="books"
       [loading]="loadingBooks"
-      [totalBooks]="totalBooksFound"
-      (onPageChanged)="booksPageChanged($event)"
+      [totalBooks]="totalBooks"
+      [booksNotFound]="booksNotFound"
+      (pageChanged)="booksPageChanged($event)"
     ></app-books>
   </div>
 

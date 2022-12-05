@@ -4,6 +4,8 @@
   [pageSize]="pageSize"
   [pageSizeOptions]="pageSizeOptions"
   [disabled]="disabled"
-  (page)="pageChanged($event)"
+  (page)="handlePageChanged($event)"
 >
 </mat-paginator>
+
+{{ currentPage }}

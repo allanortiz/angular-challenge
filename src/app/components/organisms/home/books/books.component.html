@@ -8,7 +8,10 @@
       *ngIf="books.length === 0 && !loading"
       class="w-full mt-12 font-bold text-center text-white"
     >
-      Perform a search to load the books of your interest
+      <span *ngIf="booksNotFound">No book with that name found</span>
+      <span *ngIf="!booksNotFound"
+        >Perform a search to load the books of your interest</span
+      >
     </div>
 
     <app-table
@@ -29,6 +32,6 @@
     [currentPage]="currentPage"
     [pageSize]="pageSize"
     [pageSizeOptions]="pageSizeOptions"
-    (onPageChanged)="pageChanged($event)"
+    (pageChanged)="handlePageChanged($event)"
   ></app-paginator>
 </app-container>

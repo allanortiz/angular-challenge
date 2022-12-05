@@ -1,6 +1,7 @@
 <home-template
   [books]="books"
   [loadingBooks]="loadingBooks"
-  [totalBooksFound]="totalBooksFound"
-  (onSearchBooks)="searchBooks($event)"
+  [totalBooks]="totalBooks"
+  [booksNotFound]="booksNotFound"
+  (searchBooks)="searchBooks($event)"
 ></home-template>

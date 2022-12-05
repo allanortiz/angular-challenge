@@ -34,8 +34,9 @@ export class BooksComponent {
   @Input() books: Book[] = [];
   @Input() loading = false;
   @Input() totalBooks = 0;
+  @Input() booksNotFound = false;
 
-  @Output() onPageChanged: EventEmitter<any> = new EventEmitter();
+  @Output() pageChanged: EventEmitter<any> = new EventEmitter();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -51,13 +52,17 @@ export class BooksComponent {
   pageSize = DEFAULT_PAGINATION.pageSize;
   totalRows = 0;
 
-  pageChanged(event: any) {
+  handlePageChanged(event: any) {
     this.pageSize = event.pageSize;
     this.currentPage = event.currentPage;
 
-    this.onPageChanged.emit({
+    this.pageChanged.emit({
       pageSize: this.pageSize,
       currentPage: this.currentPage,
     });
+  }
+
+  currentPageToOne() {
+    this.currentPage = 1;
   }
 }

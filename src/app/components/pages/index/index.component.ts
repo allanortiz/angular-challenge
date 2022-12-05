@@ -13,8 +13,9 @@ const DEFAULT_SEARCH = 'Technology';
 export class IndexComponent {
   books: Book[] = [];
   loadingBooks = false;
-  totalBooksFound = 0;
   currentBooksPage = 1;
+  totalBooks = 0;
+  booksNotFound = false;
 
   constructor(
     private bookService: BookService,
@@ -47,7 +48,8 @@ export class IndexComponent {
           };
         });
 
-        this.totalBooksFound = response.numFound;
+        this.totalBooks = response.numFound;
+        this.booksNotFound = response.numFound === 0;
         this.loadingBooks = false;
       },
       (error: any) => {

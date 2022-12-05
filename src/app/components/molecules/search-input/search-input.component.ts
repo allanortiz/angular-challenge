@@ -8,12 +8,12 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class SearchInputComponent {
   @Input() placeholder: string = '';
 
-  @Output() onSearch: EventEmitter<any> = new EventEmitter();
-  @Output() onEnter: EventEmitter<any> = new EventEmitter();
+  @Output() search: EventEmitter<string> = new EventEmitter();
+  @Output() enter: EventEmitter<string> = new EventEmitter();
 
   value: any = '';
 
-  search() {
-    this.onSearch.emit(this.value);
+  handleSearch() {
+    this.search.emit(this.value.trim());
   }
 }

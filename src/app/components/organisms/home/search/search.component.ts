@@ -9,11 +9,11 @@ const MIN_SEARCH_LENGTH = 4;
   styleUrls: ['./search.component.css'],
 })
 export class SearchComponent {
-  @Output() onSearch: EventEmitter<any> = new EventEmitter();
+  @Output() search: EventEmitter<any> = new EventEmitter();
 
   constructor(private snackBService: SnackBarService) {}
 
-  search(bookTitle: string) {
+  handleSearch(bookTitle: string) {
     if (bookTitle.length < MIN_SEARCH_LENGTH) {
       this.snackBService.openSnackBar(
         `Please enter at least ${MIN_SEARCH_LENGTH} characters`
@@ -22,6 +22,6 @@ export class SearchComponent {
       return;
     }
 
-    this.onSearch.emit(bookTitle);
+    this.search.emit(bookTitle);
   }
 }

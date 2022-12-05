@@ -4,14 +4,14 @@
   <app-input
     class="w-full"
     [placeholder]="placeholder"
-    (enter)="search()"
+    (enter)="handleSearch()"
     [(ngModel)]="value"
     ngDefaultControl
   ></app-input>
 
   <div
     class="flex justify-center px-8 py-8 text-white cursor-pointer"
-    (click)="search()"
+    (click)="handleSearch()"
   >
     <mat-icon class="scale-150">search</mat-icon>
   </div>

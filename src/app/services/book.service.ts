@@ -14,8 +14,10 @@ export class BookService {
     currentPage: number,
     limit: number
   ): any {
+    const formattedTitle = title.trim().replace(/\ /g, '+');
+
     return this.http.get(
-      `http://openlibrary.org/search.json?q=${title}&page=${currentPage}&limit=${limit}`
+      `http://openlibrary.org/search.json?q=${formattedTitle}&page=${currentPage}&limit=${limit}`
     );
   }
 }

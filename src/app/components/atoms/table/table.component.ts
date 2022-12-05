@@ -1,11 +1,12 @@
 import { Component, Input } from '@angular/core';
 
-type ColumnType = 'string' | 'image_url';
+type ColumnType = 'string' | 'image_url' | 'link';
 
 export type ColumnProps = {
   [key: string]: {
     type: ColumnType;
     name: string;
+    url?: string;
   };
 };
 

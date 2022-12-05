@@ -2,8 +2,8 @@
   <div class="w-1/2 mx-auto my-20">
     <app-search-input
       placeholder="Title"
-      (onSearch)="search($event)"
-      (onEnter)="search($event)"
+      (search)="handleSearch($event)"
+      (enter)="handleSearch($event)"
     ></app-search-input>
   </div>
 </app-container>
