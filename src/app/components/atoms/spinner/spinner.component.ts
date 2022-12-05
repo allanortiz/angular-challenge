@@ -7,4 +7,5 @@ import { Component, Input } from '@angular/core';
 })
 export class SpinnerComponent {
   @Input() centered = false;
+  @Input() color: 'primary' | 'accent' | 'warm' = 'accent';
 }

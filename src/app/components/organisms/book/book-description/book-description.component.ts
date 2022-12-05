@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class BookDescriptionComponent {
   @Input() book: any = {};
   @Input() author: any = {};
+  @Input() loading: boolean = false;
 
   constructor(private router: Router) {}
 

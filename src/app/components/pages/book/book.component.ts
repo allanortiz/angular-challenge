@@ -11,6 +11,7 @@ export class BookComponent {
   bookKey: string = '';
   book: any = {};
   author: any = {};
+  loading: boolean = false;
 
   constructor(
     route: ActivatedRoute,
@@ -34,6 +35,8 @@ export class BookComponent {
   }
 
   getBook() {
+    this.loading = true;
+
     this.bookService.getBook(this.bookKey).subscribe(
       (response: any) => {
         console.log(response);
@@ -55,9 +58,13 @@ export class BookComponent {
         };
 
         this.getAuthor(response.authors?.[0]?.author?.key);
+
+        this.loading = false;
       },
       (error: any) => {
         console.error(error);
+
+        this.loading = false;
 
         this.snackBarService.openSnackBar(
           'Sorry, the book info could not be loaded, please try again in a few minutes'

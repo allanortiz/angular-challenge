@@ -8,4 +8,5 @@ import { Component, Input } from '@angular/core';
 export class BookDetailComponent {
   @Input() book: any = {};
   @Input() author: any = {};
+  @Input() loading: boolean = false;
 }
