@@ -1,0 +1,19 @@
+<div class="flex flex-col min-h-screen">
+  <app-header></app-header>
+
+  <div class="flex flex-col flex-grow">
+    <app-search (onSearch)="searchBooks($event)"></app-search>
+
+    <app-books
+      [books]="books"
+      [loading]="loadingBooks"
+      class="flex flex-grow"
+    ></app-books>
+
+    <!-- <p *ngFor="let book of books">
+      {{ book }}
+    </p> -->
+  </div>
+
+  <app-footer></app-footer>
+</div>

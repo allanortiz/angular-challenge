@@ -1,0 +1,18 @@
+<div
+  class="flex flex-row items-center pl-8 border border-white border-opacity-50 bg-neutral-800"
+>
+  <input
+    class="w-full mr-8 text-3xl text-white bg-neutral-800 focus:outline-none"
+    [placeholder]="placeholder"
+    [(ngModel)]="name"
+    (keydown.enter)="enter()"
+  />
+
+  <div
+    *ngIf="!!icon"
+    class="flex justify-center px-8 py-8 text-white cursor-pointer"
+    (click)="iconClick()"
+  >
+    <mat-icon class="scale-150">search</mat-icon>
+  </div>
+</div>

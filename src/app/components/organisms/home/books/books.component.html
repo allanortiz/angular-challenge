@@ -1,0 +1,33 @@
+<app-container class="flex flex-grow">
+  <div
+    class="flex flex-col justify-between flex-grow w-full h-full bg-neutral-800 mat-elevation-z8"
+  >
+    <app-spinner *ngIf="loading" class="mt-12" [centered]="true"></app-spinner>
+
+    <div
+      *ngIf="books.length === 0 && !loading"
+      class="w-full mt-12 font-bold text-center text-white"
+    >
+      Perform a search to load the books of your interest
+    </div>
+
+    <app-table
+      *ngIf="books.length > 0 && !loading"
+      [dataSource]="books"
+      [displayedColumns]="displayedColumns"
+      [columnProps]="columnProps"
+    >
+    </app-table>
+
+    <app-paginator
+      *ngIf="books.length > 0 && !loading"
+      #paginator
+      class="py-2 bg-white"
+      [totalRows]="totalRows"
+      [currentPage]="currentPage"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="pageSizeOptions"
+      (onPageChanged)="pageChanged($event)"
+    ></app-paginator>
+  </div>
+</app-container>

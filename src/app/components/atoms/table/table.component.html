@@ -1,0 +1,28 @@
+<table mat-table [dataSource]="dataSource">
+  <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+    <th mat-header-cell *matHeaderCellDef>{{ columnProps[column].name }}</th>
+
+    <td mat-cell *matCellDef="let element">
+      <span *ngIf="columnProps[column].type === 'string'">
+        {{ element[column] }}
+      </span>
+
+      <div class="flex justify-center p-2">
+        <img
+          *ngIf="columnProps[column].type === 'image_url' && !!element[column]"
+          [src]="element[column]"
+          alt="Image"
+        />
+
+        <mat-icon
+          *ngIf="columnProps[column].type === 'image_url' && !element[column]"
+          class="text-gray-300"
+          >image</mat-icon
+        >
+      </div>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
