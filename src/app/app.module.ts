@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { InputComponent } from './components/atoms/input/input.component';
 import { HomeComponent } from './components/templates/home/home.component';
-import { IndexComponent } from './components/pages/index/index.component';
-import { BookComponent } from './components/pages/book/book.component';
+import { BookDetailComponent } from './components/templates/book-detail/book-detail.component';
+import { IndexComponent as IndexPage } from './components/pages/index/index.component';
+import { BookComponent as BookPage } from './components/pages/book/book.component';
 import { HeaderComponent } from './components/organisms/app/header/header.component';
 import { FooterComponent } from './components/organisms/app/footer/footer.component';
 import { BooksComponent } from './components/organisms/home/books/books.component';
+import { HeroComponent } from './components/organisms/book/hero/hero.component';
 import { ContainerComponent } from './components/atoms/container/container.component';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -30,14 +32,17 @@ import { PaginatorComponent } from './components/atoms/paginator/paginator.compo
 import { BookService } from './services/book.service';
 import { SpinnerComponent } from './components/atoms/spinner/spinner.component';
 import { SearchInputComponent } from './components/molecules/search-input/search-input.component';
+import { BookDescriptionComponent } from './components/organisms/book/book-description/book-description.component';
+import { DescriptionComponent } from './components/atoms/description/description.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     InputComponent,
     HomeComponent,
-    IndexComponent,
-    BookComponent,
+    IndexPage,
+    BookDetailComponent,
+    BookPage,
     HeaderComponent,
     FooterComponent,
     BooksComponent,
@@ -48,6 +53,9 @@ import { SearchInputComponent } from './components/molecules/search-input/search
     PaginatorComponent,
     SpinnerComponent,
     SearchInputComponent,
+    HeroComponent,
+    BookDescriptionComponent,
+    DescriptionComponent,
   ],
   imports: [
     BrowserModule,

@@ -5,6 +5,7 @@ import {
   ViewChild,
   EventEmitter,
 } from '@angular/core';
+import { Router } from '@angular/router';
 import { ColumnProps } from 'src/app/components/atoms/table/table.component';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { DEFAULT_PAGINATION } from 'src/app/components/atoms/paginator/paginator.component';
@@ -52,6 +53,8 @@ export class BooksComponent {
   pageSize = DEFAULT_PAGINATION.pageSize;
   totalRows = 0;
 
+  constructor(private router: Router) {}
+
   handlePageChanged(event: any) {
     this.pageSize = event.pageSize;
     this.currentPage = event.currentPage;
@@ -64,5 +67,11 @@ export class BooksComponent {
 
   currentPageToOne() {
     this.currentPage = 1;
+  }
+
+  handleRowClick(row: any) {
+    console.log(row);
+
+    this.router.navigateByUrl(`${row.key}`, { state: { row } });
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 type ColumnType = 'string' | 'image_url' | 'link';
 
@@ -19,4 +19,6 @@ export class TableComponent {
   @Input() dataSource: any[] = [];
   @Input() displayedColumns: string[] = [];
   @Input() columnProps: ColumnProps = {};
+
+  @Output() rowClick: EventEmitter<any> = new EventEmitter<any>();
 }

@@ -16,9 +16,11 @@
 
     <app-table
       *ngIf="books.length > 0 && !loading"
+      class="block w-full"
       [dataSource]="books"
       [displayedColumns]="displayedColumns"
       [columnProps]="columnProps"
+      (rowClick)="handleRowClick($event)"
     >
     </app-table>
   </div>

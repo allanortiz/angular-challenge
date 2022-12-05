@@ -5,7 +5,7 @@ import { IndexComponent } from './components/pages/index/index.component';
 
 const routes: Routes = [
   { path: '', component: IndexComponent },
-  { path: 'book', component: BookComponent },
+  { path: 'works/:id', component: BookComponent },
 ];
 
 @NgModule({

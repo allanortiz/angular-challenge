@@ -1,0 +1,16 @@
+<div class="flex flex-col min-h-screen">
+  <div class="header-bg">
+    <app-header></app-header>
+
+    <app-hero [book]="book" [author]="author"></app-hero>
+  </div>
+
+  <div class="flex flex-col flex-grow">
+    <app-book-description
+      [book]="book"
+      [author]="author"
+    ></app-book-description>
+  </div>
+
+  <app-footer></app-footer>
+</div>
