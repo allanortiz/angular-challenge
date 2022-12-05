@@ -2,6 +2,7 @@
   <input
     class="w-full py-2 mr-8 text-3xl text-white bg-neutral-800 focus:outline-none"
     [placeholder]="placeholder"
+    [disabled]="disabled"
     [(ngModel)]="ngModel"
     (keydown.enter)="enter.emit($event)"
     ngDefaultControl

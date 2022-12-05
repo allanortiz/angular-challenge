@@ -8,6 +8,7 @@ import { BookService } from 'src/app/services/book.service';
 })
 export class InputComponent {
   @Input() placeholder: string = '';
+  @Input() disabled: boolean = false;
 
   @Output() enter: EventEmitter<any> = new EventEmitter();
 

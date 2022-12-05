@@ -13,6 +13,7 @@ import {
 })
 export class SearchInputComponent {
   @Input() placeholder: string = '';
+  @Input() disabled: boolean = false;
 
   @Output() search: EventEmitter<string> = new EventEmitter();
   @Output() enter: EventEmitter<string> = new EventEmitter();
@@ -21,6 +22,8 @@ export class SearchInputComponent {
   @Output() valueChange: EventEmitter<any> = new EventEmitter();
 
   handleSearch() {
+    if (this.disabled) return;
+
     this.search.emit();
   }
 }

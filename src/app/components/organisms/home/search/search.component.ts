@@ -1,13 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  SimpleChanges,
-  OnChanges,
-  ViewChild,
-} from '@angular/core';
-import { SearchInputComponent } from 'src/app/components/molecules/search-input/search-input.component';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { SnackBarService } from 'src/app/services/snackbar.service';
 
 const MIN_SEARCH_LENGTH = 4;
@@ -19,6 +10,8 @@ const MIN_SEARCH_LENGTH = 4;
 })
 export class SearchComponent {
   inputValue: any = '';
+
+  @Input() loading: boolean = false;
 
   @Output() search: EventEmitter<any> = new EventEmitter();
 

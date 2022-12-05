@@ -4,6 +4,7 @@
 
     <app-search
       #searchComponent1
+      [loading]="loadingBooks"
       (search)="handleSearchBooks($event)"
     ></app-search>
   </div>

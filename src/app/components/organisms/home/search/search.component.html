@@ -2,6 +2,7 @@
   <div class="w-full mx-auto my-20 md:w-1/2">
     <app-search-input
       placeholder="Title"
+      [disabled]="loading"
       [value]="inputValue"
       (search)="handleSearch()"
       (enter)="handleSearch()"
