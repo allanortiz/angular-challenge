@@ -44,13 +44,27 @@ export class IndexComponent {
     this.books = this.state.books;
   }
 
+  getPageSize(pageSize: number | null) {
+    if (pageSize === null && this.state?.pageSize) {
+      return this.state?.pageSize;
+    }
+
+    if (pageSize !== null) {
+      return pageSize;
+    }
+
+    return DEFAULT_PAGINATION.pageSize;
+  }
+
   searchBooks(
     { title = DEFAULT_SEARCH, currentPage, pageSize }: any,
     isInit: boolean = false
   ) {
     this.loadingBooks = true;
 
-    this.bookService.getBooks(title, currentPage, pageSize).subscribe(
+    const currentPageSize = this.getPageSize(pageSize);
+
+    this.bookService.getBooks(title, currentPage, currentPageSize).subscribe(
       (response: any) => {
         this.books = response.docs.map((book: any) => {
           return {
@@ -67,7 +81,7 @@ export class IndexComponent {
 
         this.state = {
           currentPage,
-          pageSize,
+          pageSize: currentPageSize,
           books: this.books,
           totalBooks: response.numFound,
         };

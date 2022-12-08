@@ -72,7 +72,7 @@ export class HomeComponent {
 
   handleSearchBooks(
     bookTitle: string,
-    pageSize: number = this.lastPageSize,
+    pageSize: number | null = null,
     currentPage: number = 1
   ) {
     this.lastSearchedBookTitle = bookTitle;
